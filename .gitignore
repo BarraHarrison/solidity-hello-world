@@ -4,3 +4,4 @@ ignition/
 package-lock.json
 cache/
 artifacts/
+.env
