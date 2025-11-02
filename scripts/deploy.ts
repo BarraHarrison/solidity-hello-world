@@ -1,15 +1,16 @@
-import hre from "hardhat";
+import { ethers } from "hardhat";
 
 async function main() {
-    const HelloBlockchain = await hre.ethers.getContractFactory("HelloBlockchain");
+    console.log("🚀 Deploying HelloBlockchain to the local Hardhat network...");
+    const HelloBlockchain = await ethers.getContractFactory("HelloBlockchain");
     const helloBlockchain = await HelloBlockchain.deploy();
 
     await helloBlockchain.waitForDeployment();
 
-    console.log(`✅ HelloBlockchain deployed to: ${helloBlockchain.target}`);
+    console.log(`✅ HelloBlockchain deployed locally at: ${helloBlockchain.target}`);
 }
 
 main().catch((error) => {
     console.error("❌ Deployment failed:", error);
-    process.exit(1);
+    process.exitCode = 1;
 });
